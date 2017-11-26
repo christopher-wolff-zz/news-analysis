@@ -1,17 +1,31 @@
-import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize
+"""Main module."""
 
-# Run nltk.download() to install required packages 
+__authors__ = 'Christopher Wolff, Kate Chen'
+__version__ = '1.0'
+__date__ = '9/10/2017'
 
-text_dir = "data/sample.txt"
+import json
+from pprint import pprint
+import requests
+
+
+BASE_URI = 'http://api.nytimes.com/svc/mostpopular/v2'
+TYPE = 'mostviewed'
+SECTION = 'all-sections'
+TIME_PERIOD = '1'
+
 
 def main():
-	# Read text data
-	with open(text_dir) as file:
-		data = file.read()
+    """Do things."""
+    # Load settings
+    data = json.load(open('settings.json'))
+    API_KEY = data['API_KEY']
 
-	for sent in sent_tokenize(data):
-		print(sent + "\n")
+    # Send request
+    URI = f'{BASE_URI}/{TYPE}/{SECTION}/{TIME_PERIOD}.json?api_key={API_KEY}'
+    r = requests.get(URI)
+    pprint(r.json())
 
-if __name__ == "__main__":
-	main()
+
+if __name__ == '__main__':
+    main()
