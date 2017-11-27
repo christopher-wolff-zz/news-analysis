@@ -57,27 +57,30 @@ def analyze():
     """Analyze gathered data."""
     # Calculate sentiment scores
     results_ = json.load(open('data/raw.json'))
-    for n, result in enumerate(results_):
+    for k, result in enumerate(results_):
         title = result['title']
         abstract = result['abstract']
-        # url = result['url']
-        '''
+        url = result['url']
+
         f = urllib.request.urlopen(url)
         soup = BeautifulSoup(f, 'html5lib')
         document = ''
         for par in soup.find_all('p', class_='story-body-text story-content'):
             if par.string:
                 document += par.string
-        '''
+
         title_blob = TextBlob(title)
         abstract_blob = TextBlob(abstract)
+        document_blob = TextBlob(document)
 
         title_sent = title_blob.sentiment
         abstract_sent = abstract_blob.sentiment
+        document_sent = document_blob.sentiment
 
         result.update({'title_sent': title_sent,
-                       'abstract_sent': abstract_sent})
-        print(f'{n+1}: {title} -> {title_sent} {abstract_sent}')
+                       'abstract_sent': abstract_sent,
+                       'document_sent': document_sent})
+        print(f'{k+1}: {title} {title_sent.polarity} {abstract_sent.polarity} {document_sent.polarity}')
 
     # Save to file
     with open('data/sentiments.json', 'w') as output_file:
@@ -88,10 +91,26 @@ def visualize():
     """Visualize the data."""
     # Load data
     data = json.load(open('data/sentiments.json'))
-    sentiments = [result['title_sent'][0] for result in data]
+    title_sents = [result['title_sent'][0] for result in data]
+    abstract_sents = [result['abstract_sent'][0] for result in data]
+    doc_sents = [result['abstract_sent'][0] for result in data]
 
     # Plot data
-    plt.stem(range(1, len(sentiments)+1), sentiments)
+    plt.figure(1)
+    plt.stem(range(1, len(title_sents)+1), title_sents)
+    plt.title('Title Sentiment')
+    plt.xlabel('Rank')
+    plt.ylabel('Sentiment')
+    plt.figure(2)
+    plt.stem(range(1, len(abstract_sents)+1), abstract_sents)
+    plt.title('Abstract Sentiment')
+    plt.xlabel('Rank')
+    plt.ylabel('Sentiment')
+    plt.figure(3)
+    plt.stem(range(1, len(doc_sents)+1), doc_sents)
+    plt.title('Document Sentiment')
+    plt.xlabel('Rank')
+    plt.ylabel('Sentiment')
     plt.show()
 
 
