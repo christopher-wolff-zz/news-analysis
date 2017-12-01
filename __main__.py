@@ -51,6 +51,7 @@ def query(num_queries=1):
 
 def get_stories():
     """Get full document texts from urls."""
+    # Submit GET request and parse response content
     articles = json.load(open('data/raw.json'))
     for k, article in enumerate(articles):
         print(f'Analyzing article {k+1}...')
@@ -72,25 +73,24 @@ def analyze():
     # Calculate sentiment scores
     articles = json.load(open('data/stories.json'))
     for k, article in enumerate(articles):
-        print(f'Analyzing article {k+1}...')
         title = article['title']
         abstract = article['abstract']
-        story = article['story']
+        # story = article['story']
+
+        print(f'{k+1}: {title}')
 
         title_blob = TextBlob(title, analyzer=NaiveBayesAnalyzer())
         abstract_blob = TextBlob(abstract, analyzer=NaiveBayesAnalyzer())
-        story_blob = TextBlob(story, analyzer=NaiveBayesAnalyzer())
+        # story_blob = TextBlob(story, analyzer=NaiveBayesAnalyzer())
 
         title_sent = title_blob.sentiment
         abstract_sent = abstract_blob.sentiment
-        story_sent = story_blob.sentiment
+        # story_sent = story_blob.sentiment
 
         article.update({'title_sent': title_sent,
-                        'abstract_sent': abstract_sent,
-                        'story_sent': story_sent})
+                        'abstract_sent': abstract_sent})
 
-        print(f'{k+1}: {title} {title_sent.p_pos} {abstract_sent.p_pos} \
-              {story_sent.p_pos}')
+        print(f'{title_sent.p_pos} {abstract_sent.p_pos}')
 
     # Save to file
     with open('data/sentiments.json', 'w') as output_file:
@@ -103,7 +103,7 @@ def visualize():
     articles = json.load(open('data/sentiments.json'))
     title_sents = [article['title_sent'][0] for article in articles]
     abstract_sents = [article['abstract_sent'][0] for article in articles]
-    story_sents = [article['story_sent'][0] for article in articles]
+    # story_sents = [article['story_sent'][0] for article in articles]
 
     # Plot data
     plt.figure(1)
@@ -111,21 +111,26 @@ def visualize():
     plt.title('Title Sentiment')
     plt.xlabel('Rank')
     plt.ylabel('Sentiment')
+
     plt.figure(2)
     plt.stem(range(1, len(abstract_sents)+1), abstract_sents)
     plt.title('Abstract Sentiment')
     plt.xlabel('Rank')
     plt.ylabel('Sentiment')
+
+    '''
     plt.figure(3)
     plt.stem(range(1, len(story_sents)+1), story_sents)
     plt.title('Story Sentiment')
     plt.xlabel('Rank')
     plt.ylabel('Sentiment')
+    '''
+
     plt.show()
 
 
 if __name__ == '__main__':
     # query(100)
     # get_stories()
-    analyze()
-    # visualize()
+    # analyze()
+    visualize()
