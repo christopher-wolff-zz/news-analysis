@@ -1,7 +1,7 @@
 """Main module."""
 
-from analyzer import Analyzer
+# from analyzer import *
 
 
 if __name__ == '__main__':
-    Analyzer.label()
+    pass
