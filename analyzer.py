@@ -12,9 +12,7 @@ import random
 import urllib
 
 from bs4 import BeautifulSoup
-import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
-import requests
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cross_validation import train_test_split
@@ -22,6 +20,8 @@ from sklearn import naive_bayes
 from sklearn import svm
 from sklearn.metrics import roc_auc_score
 from textblob import TextBlob
+import matplotlib.pyplot as plt
+import requests
 
 
 SETTINGS_PATH = 'settings.json'
