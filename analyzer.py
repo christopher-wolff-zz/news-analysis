@@ -46,8 +46,9 @@ class Analyzer():
     """
 
     def __init__(self):
-        pass
+        self.classifier = None
 
+    @staticmethod
     def query(num_queries=1):
         """Request data from NYT and store it as a json file.
 
@@ -71,6 +72,7 @@ class Analyzer():
         with open(RAW_PATH, 'w') as output_file:
             json.dump(articles, output_file)
 
+    @staticmethod
     def scrape_stories():
         """Get full document texts from urls."""
         # Load articles
@@ -91,6 +93,7 @@ class Analyzer():
         with open(STORIES_PATH, 'w') as output_file:
             json.dump(articles, output_file)
 
+    @staticmethod
     def label_articles(reset=False, relabel=False, start=0, rand_labels=False):
         """Run UI for sentiment labeling.
 
@@ -132,6 +135,7 @@ class Analyzer():
         with open(LABELS_PATH, 'w') as output_file:
             json.dump(articles, output_file)
 
+    @staticmethod
     def train_model(vect='tfidf'):
         """Train a sentiment analyzer model.
 
@@ -156,7 +160,7 @@ class Analyzer():
                                          stop_words=stopset)
         x = vectorizer.fit_transform(stories)
         y = labels
-        x_train, x_test, y_train, y_test = train_test_split(x, y)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 0)
         # Analyze and display relevant information
         num_total = len(articles)
         num_pos = sum(article['sentiment'] == 1 for article in articles)
@@ -175,6 +179,7 @@ class Analyzer():
         clf.fit(x_train, y_train)
         print(f'SVM: {roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1])}')
 
+    @staticmethod
     def analyze():
         """Analyze gathered data."""
         # Calculate sentiment scores
@@ -203,6 +208,7 @@ class Analyzer():
         with open(SENTIMENTS_PATH, 'w') as output_file:
             json.dump(articles, output_file)
 
+    @staticmethod
     def visualize():
         """Visualize the data."""
         # Load data
