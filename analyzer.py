@@ -149,17 +149,21 @@ def train_model(vectorizer='count'):
     x = vectorizer.fit_transform(stories)
     y = labels
     x_train, x_test, y_train, y_test = train_test_split(x, y)
+    # Analyze and display relevant information
+    num_pos = len(article in articles if article['sentiment'] == 1)
+    num_neg = len(article in articles if article['sentiment'] == -1)
+    print(f'Found {len(articles)} labeled articles')
+    print(f'Train/test split: {len(x_train)}/{len(x_test)}')
+    print(f'')
     # Train multinomial naives bayes classifier
     clf = naive_bayes.MultinomialNB()
     clf.fit(x_train, y_train)
     print('Multinomial Naive Bayes:')
-    print(roc_auc_score(y_test, clf.predict_proba(x_test)[:, 0]))
     print(roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1]))
     # Train support vector machine
     clf = svm.SVC(probability=True)
     clf.fit(x_train, y_train)
     print('Support Vector Machine:')
-    print(roc_auc_score(y_test, clf.predict_proba(x_test)[:, 0]))
     print(roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1]))
 
 
