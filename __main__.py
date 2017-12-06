@@ -1,7 +1,8 @@
 """Main module."""
 
-from analyzer import label_articles
+from analyzer import Analyzer
 
 
 if __name__ == '__main__':
-    label_articles()
+    a = Analyzer()
+    a.label_articles()

@@ -98,6 +98,7 @@ class Analyzer():
         """Run UI for sentiment labeling.
 
         Loads all articles and presents those without a label.
+
         Args:
             reset (boolean): Delete all labels
             relabel (boolean): Allow option to override existing labels
