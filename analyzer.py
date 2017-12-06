@@ -42,7 +42,6 @@ class Analyzer():
 
     Provides tools for API calls, web scraping, attribute labeling, sentiment
     analysis, and data visualization.
-
     """
 
     def __init__(self):
@@ -55,7 +54,6 @@ class Analyzer():
 
         Args:
             num_queries (int): The number of queries
-
         """
         # Load API key
         settings = json.load(open(SETTINGS_PATH))
@@ -105,7 +103,6 @@ class Analyzer():
             relabel (boolean): Allow option to override existing labels
             start (int): Article number to start from
             rand_labels (boolean): Assign all random labels
-
         """
         # Load articles
         if reset or not os.path.isfile(LABELS_PATH):
@@ -138,7 +135,7 @@ class Analyzer():
             json.dump(articles, output_file)
 
     @staticmethod
-    def train_model(vect='tfidf', random_state=1):
+    def train_model(vect='tfidf', random_state=15):
         """Train a sentiment analyzer model.
 
         Args:
@@ -146,7 +143,6 @@ class Analyzer():
                         'count' -> Bag of words
                         'tfidf' -> Term frequency - Inverse document frequency
             random_state (int): Random seed for train_test_split used by numpy
-
         """
         # Load articles
         articles = json.load(open(LABELS_PATH))
