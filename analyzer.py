@@ -46,6 +46,7 @@ class Analyzer():
     """
 
     def __init__(self):
+        """Initialize the analyzer."""
         self.classifier = None
 
     @staticmethod
@@ -156,14 +157,17 @@ class Analyzer():
         labels = [article['sentiment'] for article in articles]
         # Vectorize data
         if vect == 'tfidf':
-            vectorizer = TfidfVectorizer(use_idf=True, lowercase=True,
-                                         strip_accents='ascii', stop_words=stopset)
+            vectorizer = TfidfVectorizer(use_idf=True,
+                                         lowercase=True,
+                                         strip_accents='ascii',
+                                         stop_words=stopset)
         else:
-            vectorizer = CountVectorizer(lowercase=True, strip_accents='ascii',
+            vectorizer = CountVectorizer(lowercase=True,
+                                         strip_accents='ascii',
                                          stop_words=stopset)
         x = vectorizer.fit_transform(stories)
         y = labels
-        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = random_state)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=random_state)
         # Analyze and display relevant information
         num_total = len(articles)
         num_pos = sum(article['sentiment'] == 1 for article in articles)
