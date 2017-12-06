@@ -136,13 +136,15 @@ class Analyzer():
             json.dump(articles, output_file)
 
     @staticmethod
-    def train_model(vect='tfidf'):
+    def train_model(vect='tfidf', random_state=1):
         """Train a sentiment analyzer model.
 
         Args:
-            vect: The method used to convert input text to a vector
-                  'count' -> Bag of words
-                  'tfidf' -> Term frequency - Inverse document frequency
+            vect (str): The method used to convert input text to a vector
+                        'count' -> Bag of words
+                        'tfidf' -> Term frequency - Inverse document frequency
+            random_state (int): Random seed for train_test_split used by numpy
+
         """
         # Load articles
         articles = json.load(open(LABELS_PATH))
@@ -160,7 +162,7 @@ class Analyzer():
                                          stop_words=stopset)
         x = vectorizer.fit_transform(stories)
         y = labels
-        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 0)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = random_state)
         # Analyze and display relevant information
         num_total = len(articles)
         num_pos = sum(article['sentiment'] == 1 for article in articles)
