@@ -135,7 +135,7 @@ class Analyzer():
             json.dump(articles, output_file)
 
     @staticmethod
-    def train_model(vect='tfidf', random_state=15):
+    def train_model(vect='tfidf', random_state=None):
         """Train a sentiment analyzer model.
 
         Args:
@@ -163,7 +163,10 @@ class Analyzer():
                                          stop_words=stopset)
         x = vectorizer.fit_transform(stories)
         y = labels
-        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=random_state)
+        if random_state is not None:
+            x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=random_state)
+        else:
+            x_train, x_test, y_train, y_test = train_test_split(x, y)
         # Analyze and display relevant information
         num_total = len(articles)
         num_pos = sum(article['sentiment'] == 1 for article in articles)
