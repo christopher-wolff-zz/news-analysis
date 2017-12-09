@@ -168,13 +168,18 @@ def train_model(vect='tfidf', random_state=None):
     print(f'{num_pos} positive, {num_neg} negative')
     print(f'{percent_train}% train, {percent_test}% test')
     # Train multinomial naives bayes classifier
-    clf = naive_bayes.MultinomialNB()
-    clf.fit(x_train, y_train)
-    print(f'MNB: {roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1])}')
+    mnb_clf = naive_bayes.MultinomialNB()
+    mnb_clf.fit(x_train, y_train)
+    print(f'MNB: {roc_auc_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}')
     # Train support vector machine
-    clf = svm.SVC(probability=True)
-    clf.fit(x_train, y_train)
-    print(f'SVM: {roc_auc_score(y_test, clf.predict_proba(x_test)[:, 1])}')
+    svm_clf = svm.SVC(probability=True)
+    svm_clf.fit(x_train, y_train)
+    print(f'SVM: {roc_auc_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}')
+    # Store trained classifiers
+    with open(SVM_PATH, 'wb') as output_file:
+        pickle.dump(mnb_clf, output_file)
+    with open(MNB_PATH, 'wb') as output_file:
+        pickle.dump(svm_clf, output_file)
 
 
 def analyze():
