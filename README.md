@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 This project requires python version >= 3.5, which can be installed from [here](https://www.python.org/downloads/).
 
 ### Installing
- 
+
 To download the project source directory, simply open terminal and run
 ```
 git clone git@github.com:christopher-wolff/news-analysis.git
@@ -19,7 +19,7 @@ git clone git@github.com:christopher-wolff/news-analysis.git
 or download it directly from GitHub.
 
 (optional) We highly recommend using a python virtual environment to install dependencies.
-```
+
 Creating the environment is as simple as
 ```
 cd /path/to/project/directory/
@@ -96,4 +96,3 @@ The resulting *clf* object will be a trained sklearn classifier, whose usage ins
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
