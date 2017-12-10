@@ -58,7 +58,7 @@ You may need to run
 ```
 prior to that to resolve a certificate conflict that appears between nltk and python 3.
 
-In order to use the *query* feature that enables you to send requests to the New York Times Most Popular API and store the results automatically, you will need to obtain an API key [here](https://developer.nytimes.com/signup). Add it to file *settings_example.json* under the "API" field, and rename the file to *settings.json*.
+In order to use the query feature that enables you to send requests to the New York Times Most Popular API and store the results automatically, you will need to obtain an API key [here](https://developer.nytimes.com/signup). Add it to file settings_example.json under the "API" field, and rename the file to settings.json.
 
 ## Running the project
 
@@ -68,26 +68,26 @@ python3
 >>>from analyzer import *
 ```
 
-All methods in this module operate independent of each other, which means that the shell can safely be closed after executing any one of them. All intermediate results are stored in separate files within the *data* folder.
+All methods in this module operate independent of each other, which means that the shell can safely be closed after executing any one of them. All intermediate results are stored in separate files within the data folder.
 
 ### Break down of available methods
 #### query
-The *query* method allows you to automatically send API calls to the New York Times Most Popular API. These results will be stored in a file called *raw.json*.
+The query method allows you to automatically send API calls to the New York Times Most Popular API. These results will be stored in a file called raw.json.
 
 #### scrape_stories
-The returned API calls only contain the article title and abstract, but not the full document story. The *scrape_stories* method uses the *beautifulsoup* module to scrape the story content for all articles from the official New York Times website and stores it in a file called *with_stories.json*.
+The returned API calls only contain the article title and abstract, but not the full document story. The scrape_stories method uses the beautifulsoup module to scrape the story content for all articles from the official New York Times website and stores it in a file called with_stories.json.
 
 #### label_articles
-*label_articles* is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring.
+label_articles is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring.
 
 #### train_model
-This method trains two different sentiment classifiers: a support vector machine and a multinomial naive bayes classifier, using the *sklearn* library. The documents can be modeled using either a *term frequency - inverse document frequency* vectorizer or a *bag of words* model. The resulting models are dumped into the /models/ folder using the python object serialization tool *pickle* and can easily be extracted.
+This method trains two different sentiment classifiers: a support vector machine and a multinomial naive bayes classifier, using the sklearn library. The documents can be modeled using either a term frequency - inverse document frequency vectorizer or a bag of words model. The resulting models are dumped into the /models/ folder using the python object serialization tool pickle and can easily be extracted.
 
 #### analyze
-*analyze* was originally used to analyze sentiment using the *TextBlob* library. However, we eventually moved on towards training our own classifier. This method is included anyway in case it might be useful to someone.
+analyze was originally used to analyze sentiment using the TextBlob library. However, we eventually moved on towards training our own classifier. This method is included anyway in case it might be useful to someone.
 
 #### visualize
-The *visualize* method plots the results using *matplotlib*.
+The visualize method plots the results using matplotlib.
 
 ### Executing the sample script
 The methods described are meant to be used in combination with each other. An example of this is found in the [main](__main__.py) file, which can be executed using
@@ -110,7 +110,7 @@ python3
 >>>mnb_clf = pickle.load(open('models/mnb', 'rb'))
 >>>svm_clf = pickle.load(open('models/svm', 'rb'))
 ```
-The resulting objects *mnb_clf* and *svm_clf* will be trained sklearn classifier of type *naive_bayes.MultinomialNB* and *sklearn.svm.SVC*, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
+The resulting objects mnb_clf and svm_clf will be trained sklearn classifier of type naive_bayes.MultinomialNB and sklearn.svm.SVC, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
 
 ## License
 
