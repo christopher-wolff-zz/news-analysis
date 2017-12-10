@@ -16,9 +16,9 @@ To download the project source directory, simply open terminal and run
 ```
 git clone git@github.com:christopher-wolff/news-analysis.git
 ```
-or download it directly from GitHub. We highly recommend using a python virtual environment to install dependencies.
+or download it directly from GitHub.
 
-Creating the environment is as simple as
+(optional) We highly recommend using a python virtual environment to install dependencies. Creating the environment is as simple as
 ```
 cd /path/to/project/directory/
 python3 -m venv virtualenv
