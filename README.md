@@ -107,7 +107,8 @@ The following snippet shows how you might use the trained classifiers on your ow
 python3
 >>>import pickle
 >>>import sklearn
->>>clf = pickle.load(open('models/mnb', 'rb'))
+>>>mnb_clf = pickle.load(open('models/mnb', 'rb'))
+>>>mnb_svm = pickle.load(open('models/svm', 'rb'))
 ```
 The resulting *clf* object will be a trained sklearn classifier, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
 
