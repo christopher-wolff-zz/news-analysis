@@ -165,20 +165,18 @@ def train_model(vect='tfidf', random_state=None):
     num_neg = sum(article['sentiment'] == -1 for article in articles)
     percent_train = round(len(y_train) / num_total * 100)
     percent_test = round(len(y_test) / num_total * 100)
-    # print(f'Found {num_total} labeled articles')
-    # print(f'{num_pos} positive, {num_neg} negative')
-    # print(f'{percent_train}% train, {percent_test}% test')
+    print(f'Found {num_total} labeled articles')
+    print(f'{num_pos} positive, {num_neg} negative')
+    print(f'{percent_train}% train, {percent_test}% test')
     # Train multinomial naive bayes classifier and evaluate its accuracy
     mnb_clf = naive_bayes.MultinomialNB()
     mnb_clf.fit(x_train, y_train)
-
     y_pred = mnb_clf.predict(x_test)
     mnb_acc = accuracy_score(y_test, y_pred)
     print(f'MNB: {mnb_acc}')
     # Train support vector machine and evaluate its accuracy
     svm_clf = svm.SVC(probability=True)
     svm_clf.fit(x_train, y_train)
-
     y_pred = svm_clf.predict(x_test)
     svm_acc = accuracy_score(y_test, y_pred)
     print(f'SVM: {svm_acc}')
