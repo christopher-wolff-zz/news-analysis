@@ -108,9 +108,9 @@ python3
 >>>import pickle
 >>>import sklearn
 >>>mnb_clf = pickle.load(open('models/mnb', 'rb'))
->>>mnb_svm = pickle.load(open('models/svm', 'rb'))
+>>>svm_clf = pickle.load(open('models/svm', 'rb'))
 ```
-The resulting *clf* object will be a trained sklearn classifier, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
+The resulting objects *mnb_clf* and *svm_clf* will be trained sklearn classifier of type *naive_bayes.MultinomialNB* and *sklearn.svm.SVC*, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
 
 ## License
 
