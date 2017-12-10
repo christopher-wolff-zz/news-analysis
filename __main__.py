@@ -1,7 +1,9 @@
 """Sample use of analyzer module."""
 
-from analyzer import query, scrape_stories
-
+from analyzer import query
+from analyzer import scrape_stories
+from analyzer import train_model
+from analyzer import visualize
 
 if __name__ == '__main__':
     print('Requesting articles from NYT API')
@@ -17,3 +19,9 @@ if __name__ == '__main__':
     print('Training classifiers')
     print('====================')
     train_model()
+    print()
+
+    print('Visualize results')
+    print('=================')
+    visualize()
+    print()
