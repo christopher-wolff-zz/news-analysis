@@ -70,22 +70,22 @@ All methods in this module operate independent of each other, which means that t
 
 ### Break down of available methods
 #### query
-The **query** method allows you to automatically send API calls to the New York Times Most Popular API. These results will be stored in a file called *raw.json*.
+The *query* method allows you to automatically send API calls to the New York Times Most Popular API. These results will be stored in a file called *raw.json*.
 
 #### scrape_stories
-The returned API calls only contain the article title and abstract, but not the full document story. The **scrape_stories** method uses the *beautifulsoup* module to scrape the story content for all articles from the official New York Times website and stores it in a file called *with_stories.json*.
+The returned API calls only contain the article title and abstract, but not the full document story. The *scrape_stories* method uses the *beautifulsoup* module to scrape the story content for all articles from the official New York Times website and stores it in a file called *with_stories.json*.
 
 #### label_articles
-**label_articles** is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring.
+*label_articles* is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring.
 
 #### train_model
 This method trains two different sentiment classifiers: a support vector machine and a multinomial naive bayes classifier, using the *sklearn* library. The documents can be modeled using either a *term frequency - inverse document frequency* vectorizer or a *bag of words* model. The resulting models are dumped into the /models/ folder using the python object serialization tool *pickle* and can easily be extracted.
 
 #### analyze
-**analyze** was originally used to analyze sentiment using the *TextBlob* library. However, we eventually moved on towards training our own classifier. This method is included anyway in case it might be useful to someone.
+*analyze* was originally used to analyze sentiment using the *TextBlob* library. However, we eventually moved on towards training our own classifier. This method is included anyway in case it might be useful to someone.
 
 #### visualize
-The **visualize** method plots the results using *matplotlib*.
+The *visualize* method plots the results using *matplotlib*.
 
 ## Deployment
 
