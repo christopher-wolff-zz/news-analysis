@@ -19,10 +19,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn import naive_bayes
 from sklearn import svm
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import accuracy_score, roc_auc_score
 from textblob import TextBlob
 import matplotlib.pyplot as plt
 import requests
+import numpy as np
 
 
 SETTINGS_PATH = 'settings.json'
@@ -170,11 +171,13 @@ def train_model(vect='tfidf', random_state=None):
     # Train multinomial naives bayes classifier
     mnb_clf = naive_bayes.MultinomialNB()
     mnb_clf.fit(x_train, y_train)
-    print(f'MNB: {roc_auc_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}')
+    print(f'MNB: roc_auc {roc_auc_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}'
+          'acc {accuracy_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}')
     # Train support vector machine
     svm_clf = svm.SVC(probability=True)
     svm_clf.fit(x_train, y_train)
-    print(f'SVM: {roc_auc_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}')
+    print(f'SVM: {roc_auc_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}'
+          'acc {accuracy_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}')
     # Store trained classifiers
     with open(SVM_PATH, 'wb') as output_file:
         pickle.dump(mnb_clf, output_file)
@@ -214,11 +217,30 @@ def analyze():
 def visualize():
     """Visualize the data."""
     # Load data
-    articles = json.load(open(SENTIMENTS_PATH))
-    title_sents = [article['title_sent'][0] for article in articles]
-    abstract_sents = [article['abstract_sent'][0] for article in articles]
+    articles = json.load(open(LABELS_PATH))
+    # title_sents = [article['title_sent'][0] for article in articles]
+    # abstract_sents = [article['abstract_sent'][0] for article in articles]
     # story_sents = [article['story_sent'][0] for article in articles]
 
+    neg_avg = []
+    total_neg = 0
+    total = 0
+    for k, a in enumerate(articles):
+        if 'sentiment' not in a:
+            continue
+        if a['sentiment'] == -1:
+                total_neg += 1
+        neg_avg.append(total_neg / (k+1))
+        total += 1
+
+    # avg = np.array([total_neg / total for i in range(total)])
+    plt.figure(1)
+    plt.plot(range(1, total + 1), neg_avg)
+    # plt.plot(range(1, total + 1), avg)
+    plt.title('Cumulative Average of Negative Articles')
+    plt.xlabel('Popularity')
+    plt.ylabel('% Negative')
+    """
     # Plot data
     plt.figure(1)
     plt.stem(range(1, len(title_sents)+1), title_sents)
@@ -232,7 +254,6 @@ def visualize():
     plt.xlabel('Rank')
     plt.ylabel('Sentiment')
 
-    """
     plt.figure(3)
     plt.stem(range(1, len(story_sents)+1), story_sents)
     plt.title('Story Sentiment')
