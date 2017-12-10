@@ -34,6 +34,7 @@ This project has the following dependencies:
 * [scipy](https://www.scipy.org/)
 * [sklearn](http://scikit-learn.org/)
 * [textblob](https://pypi.python.org/pypi/textblob)
+
 These can be installed using the provided requirements.txt with the command
 ```
 pip3 install -r requirements.txt
