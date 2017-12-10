@@ -92,7 +92,7 @@ The *visualize* method plots the results using *matplotlib*.
 ### Executing the sample script
 The methods described are meant to be used in combination with each other. An example of this is found in the [main](__main__.py) file, which can be executed using
 ```
-python3 news-analysis # root directory
+python3 news-analysis    # root directory
 ```
 or
 ```
