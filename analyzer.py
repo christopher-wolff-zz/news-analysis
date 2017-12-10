@@ -19,11 +19,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn import naive_bayes
 from sklearn import svm
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import accuracy_score
 from textblob import TextBlob
 import matplotlib.pyplot as plt
 import requests
-import numpy as np
 
 
 SETTINGS_PATH = 'settings.json'
@@ -156,7 +155,8 @@ def train_model(vect='tfidf', random_state=None):
     x = vectorizer.fit_transform(stories)
     y = labels
     if random_state is not None:
-        x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=random_state)
+        x_train, x_test, y_train, y_test = train_test_split(
+                x, y, random_state=random_state)
     else:
         x_train, x_test, y_train, y_test = train_test_split(x, y)
     # Analyze and display relevant information
@@ -165,19 +165,23 @@ def train_model(vect='tfidf', random_state=None):
     num_neg = sum(article['sentiment'] == -1 for article in articles)
     percent_train = round(len(y_train) / num_total * 100)
     percent_test = round(len(y_test) / num_total * 100)
-    print(f'Found {num_total} labeled articles')
-    print(f'{num_pos} positive, {num_neg} negative')
-    print(f'{percent_train}% train, {percent_test}% test')
-    # Train multinomial naives bayes classifier
+    # print(f'Found {num_total} labeled articles')
+    # print(f'{num_pos} positive, {num_neg} negative')
+    # print(f'{percent_train}% train, {percent_test}% test')
+    # Train multinomial naive bayes classifier and evaluate its accuracy
     mnb_clf = naive_bayes.MultinomialNB()
     mnb_clf.fit(x_train, y_train)
-    print(f'MNB: roc_auc {roc_auc_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}'
-          'acc {accuracy_score(y_test, mnb_clf.predict_proba(x_test)[:, 1])}')
-    # Train support vector machine
+
+    y_pred = mnb_clf.predict(x_test)
+    mnb_acc = accuracy_score(y_test, y_pred)
+    print(f'MNB: {mnb_acc}')
+    # Train support vector machine and evaluate its accuracy
     svm_clf = svm.SVC(probability=True)
     svm_clf.fit(x_train, y_train)
-    print(f'SVM: {roc_auc_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}'
-          'acc {accuracy_score(y_test, svm_clf.predict_proba(x_test)[:, 1])}')
+
+    y_pred = svm_clf.predict(x_test)
+    svm_acc = accuracy_score(y_test, y_pred)
+    print(f'SVM: {svm_acc}')
     # Store trained classifiers
     with open(SVM_PATH, 'wb') as output_file:
         pickle.dump(mnb_clf, output_file)
