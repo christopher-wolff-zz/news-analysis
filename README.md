@@ -47,8 +47,8 @@ python3
 ```
 and then running
 ```
-import nltk
-nltk.download('stopwords')
+>>>import nltk
+>>>nltk.download('stopwords')
 ```
 You may need to run
 ```
@@ -63,7 +63,7 @@ In order to use the *query* feature that enables you to send requests to the New
 The project can be executed from a python shell with
 ```
 python3
-from analyzer import \*
+>>>from analyzer import \*
 ```
 
 All methods in this module operate independent of each other, which means that the shell can safely be closed after executing any one of them. All intermediate results are stored in separate files within the *data* folder.
@@ -91,9 +91,10 @@ The **visualize** method plots the results using *matplotlib*.
 
 The following snippet shows how you might use the trained classifiers on your own documents:
 ```
-import pickle
-import sklearn
-clf = pickle.load(open('models/mnb', 'rb'))
+python3
+>>>import pickle
+>>>import sklearn
+>>>clf = pickle.load(open('models/mnb', 'rb'))
 ```
 The resulting *clf* object will be a trained sklearn classifier, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
 
