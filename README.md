@@ -41,7 +41,7 @@ pip3 install -r requirements.txt
 ```
 inside the project root directory.
 
-Lastly, the nltk library requires downloading all needed files. This can be done by launching an interactive python shell with
+Lastly, the nltk library requires downloading some files. This can be done by launching an interactive python shell with
 ```
 python3
 ```
