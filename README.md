@@ -1,6 +1,8 @@
 # News Analysis
 
-A framework for automated web scraping and sentiment analysis for news articles. Provides trained SVM and Naive Bayes classifiers.
+A framework for automated web scraping and sentiment analysis for news articles. Provides trained SVM and Naive Bayes classifiers for sentiment prediction.
+
+This project is supposed to demonstrate the entire analysis process from data collection to data processing and visualization. Since the implementation will vary significantly depending on the use case, it is NOT meant to be a toolkit that can be used directly in your project, just an example of what such a project might look like. Most of the code can be found in [analyzer.py](analyzer.py) and is fully documented.
 
 ## Getting Started
 
@@ -86,6 +88,17 @@ This method trains two different sentiment classifiers: a support vector machine
 
 #### visualize
 The *visualize* method plots the results using *matplotlib*.
+
+### Executing the sample script
+The methods described are meant to be used in combination with each other. An example of this is found in the [main](__main__.py) file, which can be executed using
+```
+python3 news-analysis # root directory
+```
+or
+```
+python3 .
+```
+from inside the root directory.
 
 ## Deployment
 
