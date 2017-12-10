@@ -27,13 +27,13 @@ source virtualenv/bin/activate
 More information about python virtual environments can be found [here](https://virtualenv.pypa.io/en/stable/userguide/).
 
 This project has the following dependencies:
-..* [bs4](https://www.crummy.com/software/BeautifulSoup/)
-..* [matplotlib](https://matplotlib.org/)
-..* [nltk](http://www.nltk.org/)
-..* [requests](http://docs.python-requests.org/en/master/)
-..* [scipy](https://www.scipy.org/)
-..* [sklearn](http://scikit-learn.org/)
-..* [textblob](https://pypi.python.org/pypi/textblob)
+* [bs4](https://www.crummy.com/software/BeautifulSoup/)
+* [matplotlib](https://matplotlib.org/)
+* [nltk](http://www.nltk.org/)
+* [requests](http://docs.python-requests.org/en/master/)
+* [scipy](https://www.scipy.org/)
+* [sklearn](http://scikit-learn.org/)
+* [textblob](https://pypi.python.org/pypi/textblob)
 These can be installed using the provided requirements.txt with the command
 ```
 pip3 install -r requirements.txt
