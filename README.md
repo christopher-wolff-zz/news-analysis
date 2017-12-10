@@ -70,7 +70,7 @@ python3
 
 All methods in this module operate independent of each other, which means that the shell can safely be closed after executing any one of them. All intermediate results are stored in separate files within the data folder.
 
-### Break down of available methods
+### Break down of available features
 #### query
 The query method allows you to automatically send API calls to the New York Times Most Popular API. These results will be stored in a file called raw.json.
 
@@ -78,7 +78,7 @@ The query method allows you to automatically send API calls to the New York Time
 The returned API calls only contain the article title and abstract, but not the full document story. The scrape_stories method uses the beautifulsoup module to scrape the story content for all articles from the official New York Times website and stores it in a file called with_stories.json.
 
 #### label_articles
-label_articles is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring.
+label_articles is a UI that can be used to manually label the returned articles and was originally used to obtain training data for the sentiment classifiers. More information can be found in the method docstring. Results are stored in with_labels.json.
 
 #### train_model
 This method trains two different sentiment classifiers: a support vector machine and a multinomial naive bayes classifier, using the sklearn library. The documents can be modeled using either a term frequency - inverse document frequency vectorizer or a bag of words model. The resulting models are dumped into the /models/ folder using the python object serialization tool pickle and can easily be extracted.
