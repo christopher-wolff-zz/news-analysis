@@ -63,7 +63,7 @@ In order to use the *query* feature that enables you to send requests to the New
 The project can be executed from a python shell with
 ```
 python3
->>>from analyzer import \*
+>>>from analyzer import *
 ```
 
 All methods in this module operate independent of each other, which means that the shell can safely be closed after executing any one of them. All intermediate results are stored in separate files within the *data* folder.
