@@ -59,6 +59,9 @@ You may need to run
 prior to that to resolve a certificate conflict that appears between nltk and python 3.
 
 In order to use the query feature that enables you to send requests to the New York Times Most Popular API and store the results automatically, you will need to obtain an API key [here](https://developer.nytimes.com/signup). Add it to the file settings_example.json under the "API" field, and rename the file to settings.json.
+```
+mv settings_example.json settings.json
+```
 
 ## Running the project
 
