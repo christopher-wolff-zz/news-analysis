@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project requires python version >= 3.5, which can be installed from [here](https://www.python.org/downloads/).
+This project requires python version >= 3.6, which can be installed from [here](https://www.python.org/downloads/).
 
 ### Installing
 
