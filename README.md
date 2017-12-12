@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project requires python version >= 3.5, which can be installed from [here](https://www.python.org/downloads/).
+This project requires python version >= 3.6, which can be installed from [here](https://www.python.org/downloads/).
 
 ### Installing
 
@@ -59,6 +59,9 @@ You may need to run
 prior to that to resolve a certificate conflict that appears between nltk and python 3.
 
 In order to use the query feature that enables you to send requests to the New York Times Most Popular API and store the results automatically, you will need to obtain an API key [here](https://developer.nytimes.com/signup). Add it to the file settings_example.json under the "API" field, and rename the file to settings.json.
+```
+mv settings_example.json settings.json
+```
 
 ## Running the project
 
@@ -102,15 +105,18 @@ from inside the root directory.
 
 ## Deployment
 
-The following snippet shows how you might use the trained classifiers on your own documents:
+The following snippet shows how you might use the trained SVM classifier on your own documents:
 ```
 python3
 >>>import pickle
->>>import sklearn
->>>mnb_clf = pickle.load(open('models/mnb', 'rb'))
->>>svm_clf = pickle.load(open('models/svm', 'rb'))
+>>>from sklearn import svm
+>>>from sklearn.feature_extraction.text import CountVectorizer
+>>>clf = pickle.load(open('models/svm.pkl', 'rb'))
+>>>vect = CountVectorizer(vocabulary=pickle.load(open('models/count_vect.pkl', 'rb')))
+>>>tf = vect.fit_transform(['I love python!'])
+>>>clf.predict(tf)
 ```
-The resulting objects mnb_clf and svm_clf will be trained sklearn classifier of type naive_bayes.MultinomialNB and sklearn.svm.SVC, whose usage instructions can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
+Further usage instructions for the sklearn classifiers can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) and [here](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html).
 
 ## License
 
