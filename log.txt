@@ -1,0 +1,192 @@
+(virtualenv) ~/git/news-analysis$ python3 .
+Requesting articles from NYT API
+================================
+Running query 1...
+
+Scraping full article texts from NYT website
+============================================
+Scraping article 1...
+Scraping article 2...
+Scraping article 3...
+Scraping article 4...
+Scraping article 5...
+Scraping article 6...
+Scraping article 7...
+Scraping article 8...
+Scraping article 9...
+Scraping article 10...
+Scraping article 11...
+Scraping article 12...
+Scraping article 13...
+Scraping article 14...
+Scraping article 15...
+Scraping article 16...
+Scraping article 17...
+Scraping article 18...
+Scraping article 19...
+Scraping article 20...
+
+Labeling articles
+=================
+Available sentiments: [-1, 1]
+Article: 1
+Title: Bomber Strikes Near Times Square, Disrupting City but Killing None
+Abstract: The would-be suicide attacker told officials he set off the bomb in retaliation for U.S. strikes on ISIS, targeting a subway tunnel because of its Christmas-themed posters.
+----------------------------
+Article: 2
+Title: Inside Trump’s Hour-by-Hour Battle for Self-Preservation
+Abstract: With Twitter as his Excalibur, the president takes on his doubters, powered by long spells of cable news and a dozen Diet Cokes. But if Mr. Trump has yet to bend the presidency to his will, he is at least wrestling it to a draw.
+----------------------------
+Article: 3
+Title: A Nation Answers a Sobbing Boy’s Plea: ‘Why Do They Bully?’
+Abstract: After his mother shared a video of him, Keaton Jones received a flood of support from football players, actors and thousands of other well-wishers.
+----------------------------
+Article: 4
+Title: Suspect in Times Square Bombing Leaves Trail of Mystery
+Abstract: As the authorities searched for clues, those who knew Akayed Ullah described the trappings of an ordinary immigrant life in Brooklyn.
+----------------------------
+Article: 5
+Title: The Alabama Senate Race May Have Already Been Decided
+Abstract: Blame the state’s voter suppression campaign.
+----------------------------
+Article: 6
+Title: Alabama Senate Race, Unlikely Nail-Biter, Races to Finish Line
+Abstract: Amid a blur of question marks and conflicting polls, Roy S. Moore, the Republican, and Doug Jones, the Democrat, made their final appeals to voters Monday.
+----------------------------
+Article: 7
+Title: New York Today: An Explosion at Rush Hour
+Abstract: Monday: The latest on the situation in Times Square and what you need to know for your commute.
+----------------------------
+Article: 8
+Title: Why Experts Don’t Believe This Is a Rare First Map of America
+Abstract: Christie’s had planned to sell the map this week, for possibly $1.2 million, but withdrew it from an auction when questions arose about its authenticity.
+----------------------------
+Article: 9
+Title: 2018 Golden Globes: List of Nominees
+Abstract: A complete list of the nominees for the 2018 Golden Globe awards.
+----------------------------
+Article: 10
+Title: Video of Starving Polar Bear ‘Rips Your Heart Out of Your Chest’
+Abstract: A team of conservationists documented the plight of an emaciated polar bear in the Canadian Arctic Archipelago. Now some wonder what can be done to save them.
+----------------------------
+Article: 11
+Title: Ed Lee, San Francisco Mayor, Dies at 65
+Abstract: Mr. Lee was a civil rights lawyer who, in 2011, became the first Asian-American to be elected as mayor of the city.
+----------------------------
+Article: 12
+Title: Nikki Haley Says Women Who Accuse Trump of Misconduct ‘Should Be Heard’
+Abstract: The comments by Ms. Haley, the United Nations ambassador, broke from the administration’s assertion that the allegations are false and voters rightly dismissed them.
+----------------------------
+Article: 13
+Title: Video Shows Daniel Shaver Pleading for His Life Before Being Shot by Officer
+Abstract: The video, released after an Arizona jury acquitted the officer of murder, renewed calls for reforms in law enforcement. Activists described the shooting as an execution.
+----------------------------
+Article: 14
+Title: Mario Batali Steps Away From Restaurants Amid Sexual Misconduct Allegations
+Abstract: Mr. Batali made his announcement in a statement after four women accused the chef of groping. He is also stepping aside from ABC’s “The Chew.”
+----------------------------
+Article: 15
+Title: The Movie Surprises and Snubs of the 2018 Golden Globes
+Abstract: “Wonder Woman” got nothing; neither did Jake Gyllenhaal or Tiffany Haddish. “All the Money in the World,” which was to star Kevin Spacey, drew 3 nominations.
+----------------------------
+Article: 16
+Title: Trump Escalates His Criticism of the News Media, Fueling National Debate
+Abstract: President Trump has issued broadsides against major news outlets, as reporting errors provide ammunition for his case that he is being persecuted.
+----------------------------
+Article: 17
+Title: Susan Collins and the Duping of Centrists
+Abstract: And your health care may suffer for it.
+----------------------------
+Article: 18
+Title: Sexual Harassment Training Doesn’t Work. But Some Things Do.
+Abstract: Traditional methods can backfire, but ideas like teaching bystanders to intervene and promoting more women have proved effective.
+----------------------------
+Article: 19
+Title: A Look Beneath the Port Authority, Where a Bomb Exploded
+Abstract: The explosion occurred in the underground passageway connecting the Times Square and Port Authority subway stations in Manhattan.
+----------------------------
+Article: 20
+Title: Why I Can No Longer Call Myself an Evangelical Republican
+Abstract: Preserving my identity as a Christian conservative means turning away from two movements that have shaped my life.
+----------------------------
+
+Training classifiers
+====================
+Found 20 labeled articles
+11 +, 9 -
+Vectorizing using bag of words...
+Naive Bayes: 0.00% accuracy
+SVM: 60.00% accuracy
+Vectorizing using tfidf...
+Naive Bayes: 40.00% accuracy
+SVM: 20.00% accuracy
+
+Analyzing data
+====================
+1: Bomber Strikes Near Times Square, Disrupting City but Killing None
+Sentiment(polarity=0.1, subjectivity=0.4) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+2: Inside Trump’s Hour-by-Hour Battle for Self-Preservation
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=-0.175, subjectivity=0.4) Sentiment(polarity=0.0, subjectivity=0.0)
+3: A Nation Answers a Sobbing Boy’s Plea: ‘Why Do They Bully?’
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=-0.125, subjectivity=0.375) Sentiment(polarity=0.0, subjectivity=0.0)
+4: Suspect in Times Square Bombing Leaves Trail of Mystery
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=-0.25, subjectivity=0.5) Sentiment(polarity=0.0, subjectivity=0.0)
+5: The Alabama Senate Race May Have Already Been Decided
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+6: Alabama Senate Race, Unlikely Nail-Biter, Races to Finish Line
+Sentiment(polarity=-0.5, subjectivity=0.5) Sentiment(polarity=0.0, subjectivity=1.0) Sentiment(polarity=0.0, subjectivity=0.0)
+7: New York Today: An Explosion at Rush Hour
+Sentiment(polarity=0.13636363636363635, subjectivity=0.45454545454545453) Sentiment(polarity=0.5, subjectivity=0.9) Sentiment(polarity=0.0, subjectivity=0.0)
+8: Why Experts Don’t Believe This Is a Rare First Map of America
+Sentiment(polarity=0.275, subjectivity=0.6166666666666667) Sentiment(polarity=0.0, subjectivity=1.0) Sentiment(polarity=0.0, subjectivity=0.0)
+9: 2018 Golden Globes: List of Nominees
+Sentiment(polarity=0.3, subjectivity=0.5) Sentiment(polarity=0.2, subjectivity=0.45) Sentiment(polarity=0.0, subjectivity=0.0)
+10: Video of Starving Polar Bear ‘Rips Your Heart Out of Your Chest’
+Sentiment(polarity=-0.08333333333333333, subjectivity=0.25) Sentiment(polarity=-0.08333333333333333, subjectivity=0.25) Sentiment(polarity=0.0, subjectivity=0.0)
+11: Ed Lee, San Francisco Mayor, Dies at 65
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.25, subjectivity=0.3333333333333333) Sentiment(polarity=0.0, subjectivity=0.0)
+12: Nikki Haley Says Women Who Accuse Trump of Misconduct ‘Should Be Heard’
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=-0.05714285714285719, subjectivity=0.5678571428571428) Sentiment(polarity=0.0, subjectivity=0.0)
+13: Video Shows Daniel Shaver Pleading for His Life Before Being Shot by Officer
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+14: Mario Batali Steps Away From Restaurants Amid Sexual Misconduct Allegations
+Sentiment(polarity=0.5, subjectivity=0.8333333333333334) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+15: The Movie Surprises and Snubs of the 2018 Golden Globes
+Sentiment(polarity=0.3, subjectivity=0.5) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+16: Trump Escalates His Criticism of the News Media, Fueling National Debate
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0625, subjectivity=0.5) Sentiment(polarity=0.0, subjectivity=0.0)
+17: Susan Collins and the Duping of Centrists
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+18: Sexual Harassment Training Doesn’t Work. But Some Things Do.
+Sentiment(polarity=0.5, subjectivity=0.8333333333333334) Sentiment(polarity=0.3666666666666667, subjectivity=0.6833333333333332) Sentiment(polarity=0.0, subjectivity=0.0)
+19: A Look Beneath the Port Authority, Where a Bomb Exploded
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+20: Why I Can No Longer Call Myself an Evangelical Republican
+Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0) Sentiment(polarity=0.0, subjectivity=0.0)
+=========================
+TextBlob accuracy: 77.78
+=========================
+Title Sentiments
+----------------
+min: -0.5
+max: 0.8333333333333334
+mean: 0.16039772727272728
+std: 0.2720452851140372
+
+Abstract Sentiments
+-------------------
+min: -0.25
+max: 1.0
+mean: 0.19120535714285714
+std: 0.313192161111021
+
+Story Sentiments
+----------------
+min: 0.0
+max: 0.0
+mean: 0.0
+std: 0.0
+
+
+Visualize results
+=================

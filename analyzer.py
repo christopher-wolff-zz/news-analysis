@@ -21,7 +21,7 @@ from sklearn import naive_bayes
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from textblob import TextBlob
-import html5lib
+# import html5lib
 import matplotlib.pyplot as plt
 import requests
 import numpy as np
