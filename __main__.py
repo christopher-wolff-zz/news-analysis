@@ -3,6 +3,7 @@
 from analyzer import query
 from analyzer import scrape_stories
 from analyzer import train_model
+from analyzer import analyze
 from analyzer import visualize
 
 if __name__ == '__main__':
@@ -19,6 +20,11 @@ if __name__ == '__main__':
     print('Training classifiers')
     print('====================')
     train_model()
+    print()
+
+    print('Analyzing data')
+    print('====================')
+    analyze()
     print()
 
     print('Visualize results')
