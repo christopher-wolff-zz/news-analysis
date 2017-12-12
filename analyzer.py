@@ -21,6 +21,7 @@ from sklearn import naive_bayes
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from textblob import TextBlob
+import html5lib
 import matplotlib.pyplot as plt
 import requests
 import numpy as np
@@ -75,7 +76,7 @@ def scrape_stories():
 
     # Submit GET request and parse response content
     for k, article in enumerate(articles):
-        print(f'Analyzing article {k+1}...')
+        print(f'Scraping article {k+1}...')
         url = article['url']
         f = urllib.request.urlopen(url)
         soup = BeautifulSoup(f, 'html5lib')
@@ -111,13 +112,14 @@ def label_articles(reset=False, relabel=False, start=0, rand_labels=False):
         raise ValueError(f'Invalid starting point: {start}')
 
     # Label articles
+    sentiments = [-1, 1]
+    print(f'Available sentiments: {sentiments}')
     for k, article in enumerate(articles[start:]):
         if not relabel and 'sentiment' in article:
             continue
         print(f'Article: {k+start+1}')
         print(f"Title: {article['title']}")
         print(f"Abstract: {article['abstract']}")
-        sentiments = [-1, 1]
         if rand_labels:
             sent = random.choice(sentiments)
         else:
@@ -143,7 +145,6 @@ def train_model(random_state=None):
     """
     # Load articles
     articles = json.load(open(LABELS_PATH))
-
     # Extract data
     articles = [article for article in articles if 'sentiment' in article]
     stopset = set(stopwords.words('english'))
@@ -356,7 +357,7 @@ def visualize():
     # TextBlob
     plt.figure(1)
     plt.subplot(1, 3, 1)
-    plt.scatter(view_rank, title_sents, s=1)
+    plt.scatter(view_rank, title_sents, s=5)
     plt.plot(view_rank, p1(view_rank), 'r--')
     plt.title('Title Sentiment')
     plt.xlabel('View Rank')
@@ -364,14 +365,14 @@ def visualize():
     plt.ylim(-1.1, 1.1)
 
     plt.subplot(1, 3, 2)
-    plt.scatter(view_rank, abstract_sents, s=1)
+    plt.scatter(view_rank, abstract_sents, s=5)
     plt.plot(view_rank, p2(view_rank), 'r--')
     plt.title('Abstract Sentiment')
     plt.xlabel('View Rank')
     plt.ylim(-1.1, 1.1)
 
     plt.subplot(1, 3, 3)
-    plt.scatter(view_rank, story_sents, s=1)
+    plt.scatter(view_rank, story_sents, s=5)
     plt.plot(view_rank, p3(view_rank), 'r--')
     plt.title('Story Sentiment')
     plt.xlabel('View Rank')
@@ -380,21 +381,21 @@ def visualize():
     # sklearn classifiers
     plt.figure(2)
     plt.subplot(2, 2, 1)
-    plt.scatter(view_rank, count_mnb_sents, s=1)
+    plt.scatter(view_rank, count_mnb_sents, s=5)
     plt.plot(view_rank, p4(view_rank), 'r--')
     plt.title('Bag of Words + Naive Bayes')
     plt.ylabel('Sentiment Score')
     plt.ylim(-1.1, 1.1)
 
     plt.subplot(2, 2, 2)
-    plt.scatter(view_rank, count_svm_sents, s=1)
-    plt.scatter(view_rank, count_svm_sents_ma, s=1, facecolor='0.5')
+    plt.scatter(view_rank, count_svm_sents, s=5)
+    plt.scatter(view_rank, count_svm_sents_ma, s=5, facecolor='0.5')
     plt.plot(view_rank, p5(view_rank), 'r--')
     plt.title('Bag of Words + SVM')
     plt.ylim(-1.1, 1.1)
 
     plt.subplot(2, 2, 3)
-    plt.scatter(view_rank, tfidf_mnb_sents, s=1)
+    plt.scatter(view_rank, tfidf_mnb_sents, s=5)
     plt.plot(view_rank, p6(view_rank), 'r--')
     plt.title('Tfidf + Naive Bayes')
     plt.xlabel('View Rank')
@@ -402,8 +403,8 @@ def visualize():
     plt.ylim(-1.1, 1.1)
 
     plt.subplot(2, 2, 4)
-    plt.scatter(view_rank, tfidf_svm_sents, s=1)
-    plt.scatter(view_rank, tfidf_svm_sents_ma, s=1, facecolor='0.5')
+    plt.scatter(view_rank, tfidf_svm_sents, s=5)
+    plt.scatter(view_rank, tfidf_svm_sents_ma, s=5, facecolor='0.5')
     plt.plot(view_rank, p7(view_rank), 'r--')
     plt.title('Tfidf + SVM')
     plt.xlabel('View Rank')
