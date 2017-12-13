@@ -36,4 +36,3 @@ if __name__ == '__main__':
     print('Visualize results')
     print('=================')
     visualize()
-    print()
