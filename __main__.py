@@ -29,7 +29,7 @@ if __name__ == '__main__':
     print()
 
     print('Analyzing data')
-    print('====================')
+    print('==============')
     analyze()
     print()
 
