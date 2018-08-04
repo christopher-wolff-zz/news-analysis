@@ -10,7 +10,7 @@ from analyzer import visualize
 if __name__ == '__main__':
     print('Requesting articles from NYT API')
     print('================================')
-    query(num_queries=1)
+    query(num_queries=10)
     print()
 
     print('Scraping full article texts from NYT website')
